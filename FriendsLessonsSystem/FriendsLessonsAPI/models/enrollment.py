@@ -1,8 +1,8 @@
 from django.db import models
-from .person import Person
+from .user import User
 from .course import Course
 
 class Enrollment(models.Model):
-    person = models.ForeignKey(Person)
-    course = models.ForeignKey(Course)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     times_taken = models.PositiveIntegerField(default=1)
