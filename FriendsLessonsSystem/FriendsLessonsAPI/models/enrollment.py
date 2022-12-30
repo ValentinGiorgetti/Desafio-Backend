@@ -5,4 +5,4 @@ from .course import Course
 class Enrollment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    times_taken = models.PositiveIntegerField(default=1)
+    lessons_taken = models.PositiveIntegerField(default=1)
