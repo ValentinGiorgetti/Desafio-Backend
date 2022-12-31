@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import User, Course, Enrollment
+from FriendsLessonsAPI.models import User, Course, Enrollment
 
 class BaseUserSerializer(serializers.ModelSerializer):
 

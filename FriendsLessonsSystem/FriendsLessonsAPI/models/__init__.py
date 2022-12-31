@@ -1,3 +1,3 @@
-from .user import User
-from .course import Course
-from .enrollment import Enrollment
+from FriendsLessonsAPI.models.user import User
+from FriendsLessonsAPI.models.course import Course
+from FriendsLessonsAPI.models.enrollment import Enrollment

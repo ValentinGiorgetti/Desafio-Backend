@@ -67,7 +67,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
-    'FriendsLessonsAPI.middleware.HeaderMiddleware',
+    'FriendsLessonsAPI.middlewares.header_middleware.HeaderMiddleware',
+    'FriendsLessonsAPI.middlewares.request_logging_middleware.RequestLoggingMiddleware',    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -111,6 +112,8 @@ DATABASES = {
         'PORT': os.environ['DB_PORT']
     }
 }
+
+MONGO_URI = os.environ["MONGODB_URI"]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

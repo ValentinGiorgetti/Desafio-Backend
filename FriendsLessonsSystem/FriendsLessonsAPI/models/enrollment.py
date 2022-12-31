@@ -1,6 +1,5 @@
 from django.db import models
-from .user import User
-from .course import Course
+from FriendsLessonsAPI.models import User, Course
 
 class Enrollment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

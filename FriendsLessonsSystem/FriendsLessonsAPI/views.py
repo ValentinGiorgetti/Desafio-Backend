@@ -2,8 +2,8 @@ from django.http import Http404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .serializers import BaseUserSerializer, UserFriends, UserFriends, UserCourses, BaseCourseSerializer
-from .models import User, Course
+from FriendsLessonsAPI.serializers import BaseUserSerializer, UserFriends, UserFriends, UserCourses, BaseCourseSerializer
+from FriendsLessonsAPI.models import User, Course
 
 class ModelList(APIView):
 
