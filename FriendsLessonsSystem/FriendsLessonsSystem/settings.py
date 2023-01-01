@@ -62,8 +62,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'djcelery_email',
+    'django_celery_beat',
     'FriendsLessonsAPI',
 ]
+
+EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
+EMAIL_HOST = 'in-v3.mailjet.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = '920eb9f11ed729a96630ad91bfda3ec8'
+EMAIL_HOST_PASSWORD = 'bcd37ee5260c8f08d99c6819ff9d477a'
+EMAIL_FROM = "ejemplodssd@gmail.com"
+EMAIL_TO = "ejemplobackend@mail.com"
+
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672/'
 
 MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
