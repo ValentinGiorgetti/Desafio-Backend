@@ -1,9 +1,13 @@
 from django.http import Http404
+from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from FriendsLessonsAPI.serializers import BaseUserSerializer, UserFriends, UserFriends, UserCourses, BaseCourseSerializer
 from FriendsLessonsAPI.models import User, Course
+
+from django.conf import settings
+import requests
 
 class ModelList(APIView):
 
@@ -48,3 +52,15 @@ class UserCoursesDetail(ModelDetail):
 class CourseDetail(ModelDetail):
     base_class = Course
     base_serializer = BaseCourseSerializer
+
+def get_current_weather_conditions(request):
+    url = f"{settings.ACCUWEATHER_API_BASE_URL}/{settings.ACCUWEATHER_LOCATION_KEY}?apikey={settings.ACCUWEATHER_API_KEY}"
+    response = requests.get(url=url)
+    
+    data = response.json()
+    if response.status_code == 200:
+        data = data[0]
+        for i in ['EpochTime', 'WeatherIcon', 'IsDayTime', 'MobileLink', 'Link']:
+            del data[i]
+
+    return JsonResponse(data, status=response.status_code)

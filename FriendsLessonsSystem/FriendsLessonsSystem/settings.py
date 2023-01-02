@@ -70,12 +70,16 @@ INSTALLED_APPS = [
 EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 EMAIL_HOST = 'in-v3.mailjet.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = '920eb9f11ed729a96630ad91bfda3ec8'
-EMAIL_HOST_PASSWORD = 'bcd37ee5260c8f08d99c6819ff9d477a'
-EMAIL_FROM = "ejemplodssd@gmail.com"
-EMAIL_TO = "ejemplobackend@mail.com"
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_FROM = 'ejemplodssd@gmail.com'
+EMAIL_TO = 'ejemplobackend@mail.com'
 
 CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672/'
+
+ACCUWEATHER_API_KEY = os.environ['ACCUWEATHER_API_KEY']
+ACCUWEATHER_API_BASE_URL = 'http://dataservice.accuweather.com/currentconditions/v1'
+ACCUWEATHER_LOCATION_KEY = '7892' # clave de la ubicación "La Plata"
 
 MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
@@ -125,7 +129,7 @@ DATABASES = {
     }
 }
 
-MONGO_URI = os.environ["MONGODB_URI"]
+MONGO_URI = os.environ['MONGODB_URI']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

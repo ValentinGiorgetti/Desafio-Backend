@@ -25,4 +25,5 @@ urlpatterns = [
     path('user-lessons-taken/<int:pk>/', views.UserCoursesDetail.as_view(), name='user-lessons-taken'),
     path('courses/', views.CourseList.as_view(), name='course-list'),
     path('courses/<int:pk>/', views.CourseDetail.as_view(), name='course-detail'),
+    path('get-current-weather-conditions/', views.get_current_weather_conditions, name='get-current-weather-conditions'),
 ]
