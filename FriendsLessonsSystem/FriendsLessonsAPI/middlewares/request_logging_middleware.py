@@ -1,5 +1,6 @@
 import pymongo
 from django.conf import settings
+import json
 
 class RequestLoggingMiddleware:
     def __init__(self, get_response):
@@ -10,11 +11,16 @@ class RequestLoggingMiddleware:
         db = client.get_database()
         collection = db.get_collection('requests_logs')
 
+        try:
+            body = json.loads(request.body)
+        except:
+            body = {}
+
         collection.insert_one({
             'method': request.method,
             'path': request.path,
             'headers': dict(request.headers),
-            'body': dict(request.body),
+            'body': body,
         })
 
         response = self.get_response(request)
