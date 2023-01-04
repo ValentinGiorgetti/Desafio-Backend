@@ -79,11 +79,194 @@ Ejemplo de email recibido:
 
 ![Ejemplo de email recibido](https://i.imgur.com/xz6bYRx.png "Ejemplo de email recibido")
 
+### Listado de endpoints
+
+- `GET /api/users/`: retorna un listado con todos los usuarios. Ejemplo:
+
+```json
+[
+  {
+    "id": 1,
+    "first_name": "Joe",
+    "last_name": "Smith",
+    "username": "joe123",
+    "birth_date": "2000-01-01"
+  },
+  {
+    "id": 2,
+    "first_name": "Mark",
+    "last_name": "Johnson",
+    "username": "mark456",
+    "birth_date": "1999-12-31"
+  },
+  {
+    "id": 3,
+    "first_name": "Jody",
+    "last_name": "Williams",
+    "username": "jody789",
+    "birth_date": "1998-12-30"
+  },
+  {
+    "id": 4,
+    "first_name": "Rachel",
+    "last_name": "Smith",
+    "username": "rachel246",
+    "birth_date": "1997-12-29"
+  }
+]
+```
+
+- `GET /api/users-friends-list/`: retorna un listado con todos los usuarios y su lista de amigos. Ejemplo:
+
+```json
+[
+  {
+    "id": 1,
+    "friends": [
+      {
+        "id": 2,
+        "first_name": "Mark",
+        "last_name": "Johnson",
+        "username": "mark456",
+        "birth_date": "1999-12-31"
+      },
+      {
+        "id": 3,
+        "first_name": "Jody",
+        "last_name": "Williams",
+        "username": "jody789",
+        "birth_date": "1998-12-30"
+      },
+      {
+        "id": 4,
+        "first_name": "Rachel",
+        "last_name": "Smith",
+        "username": "rachel246",
+        "birth_date": "1997-12-29"
+      }
+    ],
+    "first_name": "Joe",
+    "last_name": "Smith",
+    "username": "joe123",
+    "birth_date": "2000-01-01"
+  },
+  {
+    "id": 2,
+    "friends": [
+      {
+        "id": 1,
+        "first_name": "Joe",
+        "last_name": "Smith",
+        "username": "joe123",
+        "birth_date": "2000-01-01"
+      }
+    ],
+    "first_name": "Mark",
+    "last_name": "Johnson",
+    "username": "mark456",
+    "birth_date": "1999-12-31"
+  },
+  ...
+]
+```
+
+- `GET /api/user-friends/<int:pk>/`: retorna al usuario identificado por el ID ingresado y su lista de amigos. Ejemplo:
+
+```json
+{
+  "id": 1,
+  "friends": [
+    {
+      "id": 2,
+      "first_name": "Mark",
+      "last_name": "Johnson",
+      "username": "mark456",
+      "birth_date": "1999-12-31"
+    },
+    {
+      "id": 3,
+      "first_name": "Jody",
+      "last_name": "Williams",
+      "username": "jody789",
+      "birth_date": "1998-12-30"
+    },
+    {
+      "id": 4,
+      "first_name": "Rachel",
+      "last_name": "Smith",
+      "username": "rachel246",
+      "birth_date": "1997-12-29"
+    }
+  ],
+  "first_name": "Joe",
+  "last_name": "Smith",
+  "username": "joe123",
+  "birth_date": "2000-01-01"
+}
+```
+
+- `GET /api/user-lessons-taken/<int:pk>/`: retorna al usuario identificado por el ID ingresado y una lista que indica los cursos en los que ha tomado una o más lecciones. Ejemplo:
+
+```json
+{
+  "id": 4,
+  "courses": [
+    {
+      "course": {
+        "id": 1,
+        "name": "Math",
+        "description": "Math course"
+      },
+      "lessons_taken": 3
+    },
+    {
+      "course": {
+        "id": 2,
+        "name": "Spanish",
+        "description": "Spanish course"
+      },
+      "lessons_taken": 2
+    }
+  ],
+  "first_name": "Rachel",
+  "last_name": "Smith",
+  "username": "rachel246",
+  "birth_date": "1997-12-29"
+}
+```
+
+- `GET /api/courses/`: retorna un listado con todos los cursos. Ejemplo:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Math",
+    "description": "Math course"
+  },
+  {
+    "id": 2,
+    "name": "Spanish",
+    "description": "Spanish course"
+  }
+]
+```
+
+- `GET /api/courses/<int:pk>/`: retorna al curso identificado por el ID ingresado. Ejemplo:
+
+```json
+{
+  "id": 1,
+  "name": "Math",
+  "description": "Math course"
+}
+```
+
 ### Ejemplo de registro de requests recibidos y registrados en MongoDB
 
 ```json
 { 
-    "_id" : ObjectId("63b5fb916b8890e518ce8ca5"), 
+    "_id" : "ObjectId('63b5fb916b8890e518ce8ca5')", 
     "method" : "GET", 
     "path" : "/api/users/", 
     "headers" : {
@@ -101,7 +284,7 @@ Ejemplo de email recibido:
     }
 }
 { 
-    "_id" : ObjectId("63b5fbfd6b8890e518ce8ca7"), 
+    "_id" : "ObjectId('63b5fbfd6b8890e518ce8ca7')", 
     "method" : "GET", 
     "path" : "/api/user-lessons-taken/4/", 
     "headers" : {
