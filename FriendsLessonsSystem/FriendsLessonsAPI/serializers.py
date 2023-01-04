@@ -8,7 +8,7 @@ class BaseUserSerializer(serializers.ModelSerializer):
         model = User
         exclude = ['friends']
 
-class UserFriends(serializers.ModelSerializer):
+class UserFriendsSerializer(serializers.ModelSerializer):
 
     friends = BaseUserSerializer(many=True, read_only=True)
 
@@ -30,7 +30,7 @@ class BaseEnrollmentSerializer(serializers.ModelSerializer):
         model = Enrollment
         exclude = ['id', 'user']
 
-class UserCourses(BaseUserSerializer):
+class UserCoursesSerializer(BaseUserSerializer):
 
     courses = serializers.SerializerMethodField()
 
