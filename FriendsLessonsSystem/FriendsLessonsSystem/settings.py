@@ -129,7 +129,9 @@ DATABASES = {
     }
 }
 
-MONGO_URI = os.environ['MONGODB_URI']
+MONGODB_URI = os.environ['MONGODB_URI']
+MONGODB_NAME = os.environ['MONGODB_NAME']
+MONGODB_REQUESTS_LOG_COLLECTION_NAME = os.environ['MONGODB_REQUESTS_LOG_COLLECTION_NAME']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

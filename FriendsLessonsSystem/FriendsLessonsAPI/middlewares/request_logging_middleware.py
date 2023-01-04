@@ -7,9 +7,9 @@ class RequestLoggingMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        client = pymongo.MongoClient(settings.MONGO_URI)
-        db = client.get_database()
-        collection = db.get_collection('requests_logs')
+        client = pymongo.MongoClient(settings.MONGODB_URI)
+        db = client[settings.MONGODB_NAME]
+        collection = db[settings.MONGODB_REQUESTS_LOG_COLLECTION_NAME]
 
         try:
             body = json.loads(request.body)
