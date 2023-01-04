@@ -5,14 +5,13 @@ from FriendsLessonsAPI.models import User, Course, Enrollment
 class CourseModelTest(TestCase):
 
     def setUp(self):
-        self.math = Course.objects.create(name='Math')
-        self.spanish = Course.objects.create(name='Spanish')
+        self.math = Course.objects.create(name='Math', description='Math course')
 
     def test_course_creation(self):
         """Check if the course was successfully created"""
 
         self.assertEqual(self.math.name, 'Math')
-        self.assertEqual(self.spanish.name, 'Spanish')
+        self.assertEqual(self.math.description, 'Math course')
 
     def test_unique_name(self):
         """Check if course name cannot be duplicated"""
@@ -64,5 +63,4 @@ class EnrollmentModelTest(TestCase):
 
         Enrollment.objects.create(user=self.user, course=self.math)
         other_enrollment = Enrollment(user=self.user, course=self.math)
-        self.assertRaises(IntegrityError, other_enrollment.save)      
-        
+        self.assertRaises(IntegrityError, other_enrollment.save)              

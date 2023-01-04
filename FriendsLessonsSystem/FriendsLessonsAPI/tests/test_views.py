@@ -21,9 +21,9 @@ class BaseTestClass(TestCase):
                          'janesmith' : {'bobjohnson', 'joesmith'}, 'joesmith' : {'janesmith'}, 'jodywilliams' : set() }
 
         # Create some courses
-        self.mathematics = Course.objects.create(name='Mathematics')
-        self.english = Course.objects.create(name='English')
-        self.history = Course.objects.create(name='History')
+        self.mathematics = Course.objects.create(name='Mathematics', description='Mathematics course')
+        self.english = Course.objects.create(name='English', description='English course')
+        self.history = Course.objects.create(name='History', description='History course')
         self.courses = { 'Mathematics', 'English', 'History' }
         self.courses_list = [self.mathematics, self.english, self.history]
 
@@ -48,7 +48,7 @@ class UserViewTest(BaseTestClass):
     def test_user_list(self):
         """Checks if all users are returned"""
 
-        response = self.client.get(reverse('user-list'))
+        response = self.client.get(reverse('api:user-list'))
         self.assertEqual(response.status_code, 200)
         
         data = response.json()
@@ -59,7 +59,7 @@ class UserViewTest(BaseTestClass):
     def test_all_user_friends(self):
         """Checks if all user friends are returned"""
 
-        response = self.client.get(reverse('users-friends-list'))
+        response = self.client.get(reverse('api:users-friends-list'))
         self.assertEqual(response.status_code, 200)
 
         data = response.json()
@@ -70,11 +70,11 @@ class UserViewTest(BaseTestClass):
     def test_user_friends(self):
         """Checks if all user friends from a specific user are returned"""
 
-        response = self.client.get(reverse('user-friends', kwargs={'pk': 999}))
+        response = self.client.get(reverse('api:user-friends', kwargs={'pk': 999}))
         self.assertEqual(response.status_code, 404)
 
         for user in self.user_list:
-            response = self.client.get(reverse('user-friends', kwargs={'pk': user.id}))
+            response = self.client.get(reverse('api:user-friends', kwargs={'pk': user.id}))
             self.assertEqual(response.status_code, 200)
 
             data = response.json()
@@ -85,11 +85,11 @@ class UserViewTest(BaseTestClass):
     def test_lessons_taken_by_user(self):
         """Checks if all courses with 1 or more lessons taken from a specific user are returned"""
 
-        response = self.client.get(reverse('user-lessons-taken', kwargs={'pk': 999}))
+        response = self.client.get(reverse('api:user-lessons-taken', kwargs={'pk': 999}))
         self.assertEqual(response.status_code, 404)
 
         for user in self.user_list:
-            response = self.client.get(reverse('user-lessons-taken', kwargs={'pk': user.id}))
+            response = self.client.get(reverse('api:user-lessons-taken', kwargs={'pk': user.id}))
             self.assertEqual(response.status_code, 200)
 
             data = response.json()
@@ -102,7 +102,7 @@ class CourseViewTest(BaseTestClass):
     def test_course_list(self):
         """Checks if all courses are returned"""
 
-        response = self.client.get(reverse('course-list'))
+        response = self.client.get(reverse('api:course-list'))
         self.assertEqual(response.status_code, 200)
         
         data = response.json()
@@ -113,11 +113,11 @@ class CourseViewTest(BaseTestClass):
     def test_course(self):
         """Checks if the specified course is returned"""
 
-        response = self.client.get(reverse('course-detail', kwargs={'pk': 999}))
+        response = self.client.get(reverse('api:course-detail', kwargs={'pk': 999}))
         self.assertEqual(response.status_code, 404)
 
         for course in self.courses_list:
-            response = self.client.get(reverse('course-detail', kwargs={'pk': course.id}))
+            response = self.client.get(reverse('api:course-detail', kwargs={'pk': course.id}))
             self.assertEqual(response.status_code, 200)
 
             data = response.json()
@@ -129,7 +129,7 @@ class ExternalAPIViewTest(TestCase):
     def test_get_current_weather_conditions(self):
         """Checks if the external API integration is working"""
 
-        response = self.client.get(reverse('get-current-weather-conditions'))
+        response = self.client.get(reverse('api:get-current-weather-conditions'))
         self.assertEqual(response.status_code, 200)
         
         data = response.json()
