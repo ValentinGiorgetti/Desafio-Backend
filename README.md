@@ -262,6 +262,29 @@ Ejemplo de email recibido:
 }
 ```
 
+- `GET /api/get-current-weather-conditions/`: retorna las condiciones climáticas actuales de la ciudad de La Plata, utilizando la API pública de AccuWeather. Ejemplo:
+
+```json
+{
+  "LocalObservationDateTime": "2023-01-04T20:35:00-03:00",
+  "WeatherText": "Clear",
+  "HasPrecipitation": false,
+  "PrecipitationType": null,
+  "Temperature": {
+    "Metric": {
+      "Value": 22.0,
+      "Unit": "C",
+      "UnitType": 17
+    },
+    "Imperial": {
+      "Value": 72.0,
+      "Unit": "F",
+      "UnitType": 18
+    }
+  }
+}
+```
+
 ### Ejemplo de registro de requests recibidos y registrados en MongoDB
 
 ```json
