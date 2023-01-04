@@ -35,6 +35,6 @@ class UserCourses(BaseUserSerializer):
     courses = serializers.SerializerMethodField()
 
     def get_courses(self, obj):
-        students = obj.enrollment_set.all().filter(lessons_taken__gt=0)
+        students = obj.enrollment_set.all().filter(lessons_taken__gt=0).prefetch_related('user')
         serializer = BaseEnrollmentSerializer(students, many=True)
         return serializer.data

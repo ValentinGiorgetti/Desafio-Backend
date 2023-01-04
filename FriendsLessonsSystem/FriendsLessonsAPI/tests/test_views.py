@@ -46,7 +46,7 @@ class BaseTestClass(TestCase):
 class UserViewTest(BaseTestClass):
 
     def test_user_list(self):
-        """Check if all users are returned"""
+        """Checks if all users are returned"""
 
         response = self.client.get(reverse('user-list'))
         self.assertEqual(response.status_code, 200)
@@ -57,7 +57,7 @@ class UserViewTest(BaseTestClass):
         self.assertEqual(self.usernames, usernames)
 
     def test_all_user_friends(self):
-        """Check if all user friends are returned"""
+        """Checks if all user friends are returned"""
 
         response = self.client.get(reverse('users-friends-list'))
         self.assertEqual(response.status_code, 200)
@@ -68,7 +68,7 @@ class UserViewTest(BaseTestClass):
         self.assertEqual(self.friends, friends)
 
     def test_user_friends(self):
-        """Check if all user friends from a specific user are returned"""
+        """Checks if all user friends from a specific user are returned"""
 
         response = self.client.get(reverse('user-friends', kwargs={'pk': 999}))
         self.assertEqual(response.status_code, 404)
@@ -83,7 +83,7 @@ class UserViewTest(BaseTestClass):
             self.assertEqual(friends, self.friends[user.username])
 
     def test_lessons_taken_by_user(self):
-        """Check if all courses with 1 or more lessons taken from a specific user are returned"""
+        """Checks if all courses with 1 or more lessons taken from a specific user are returned"""
 
         response = self.client.get(reverse('user-lessons-taken', kwargs={'pk': 999}))
         self.assertEqual(response.status_code, 404)
@@ -100,7 +100,7 @@ class UserViewTest(BaseTestClass):
 class CourseViewTest(BaseTestClass):
 
     def test_course_list(self):
-        """Check if all courses are returned"""
+        """Checks if all courses are returned"""
 
         response = self.client.get(reverse('course-list'))
         self.assertEqual(response.status_code, 200)
@@ -111,7 +111,7 @@ class CourseViewTest(BaseTestClass):
         self.assertEqual(courses, self.courses)
 
     def test_course(self):
-        """Check if the specified course is returned"""
+        """Checks if the specified course is returned"""
 
         response = self.client.get(reverse('course-detail', kwargs={'pk': 999}))
         self.assertEqual(response.status_code, 404)
@@ -123,3 +123,16 @@ class CourseViewTest(BaseTestClass):
             data = response.json()
 
             self.assertEqual(data['name'], course.name)
+
+class ExternalAPIViewTest(TestCase):
+
+    def test_get_current_weather_conditions(self):
+        """Checks if the external API integration is working"""
+
+        response = self.client.get(reverse('get-current-weather-conditions'))
+        self.assertEqual(response.status_code, 200)
+        
+        data = response.json()
+        desired_data = {'LocalObservationDateTime', 'WeatherText', 'HasPrecipitation', 'PrecipitationType', 'Temperature'}
+        
+        self.assertEqual(set(data.keys()), desired_data)
