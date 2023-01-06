@@ -47,17 +47,17 @@ Trabajo desarrollado por Valentín Giorgetti. Funcionalidades implementadas:
 
 3. Iniciar un entorno virtual de Python e instalar las dependencias del proyecto.
 
- - Para iniciar un entorno virtual de Python usando `venv`, primero descargarlo con el comando `pip install venv`, luego crear el entorno con el comando `python venv mi_entorno` y finalmente activarlo con el comando `mi_entorno_virtual\Scripts\activate.bat` (en Windows) o `source mi_entorno_virtual/bin/activate` (en sistemas basados en Unix).
+ - Para iniciar un entorno virtual de Python usando `venv`, primero crear el entorno con el comando `python -m venv mi_entorno` y finalmente activarlo con el comando `mi_entorno\Scripts\activate.bat` (en Windows) o `source mi_entorno/bin/activate` (en sistemas basados en Unix).
  
  - Para instalar las dependencias del proyecto utilizar el comando `pip install -r requirements.txt`.
  
-4. Iniciar los servicios de PostgreSQL y MongoDB.
+1. Iniciar los servicios de PostgreSQL y MongoDB.
 
-5. Ejecutar el comando `python manage.py test` para correr los tests y verificar que funcionen correctamente.
+2. Ejecutar el comando `python manage.py test` para correr los tests y verificar que funcionen correctamente.
 
-6. Ejecutar el comando `python init_db.py` para inicializar la base de datos PostgreSQL con algunos datos de ejemplo.
+3. Ejecutar el comando `python init_db.py` para inicializar la base de datos PostgreSQL con algunos datos de ejemplo.
 
-7. Ejecutar el comando `python manage.py runserver` para iniciar el servidor.
+4. Ejecutar el comando `python manage.py runserver` para iniciar el servidor.
 
 ### Envío de emails asincrónicos
 
