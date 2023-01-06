@@ -38,6 +38,12 @@ class UserModelTest(TestCase):
         other_user = User(first_name='Mark', last_name='Johnson', username='joe123', birth_date='1999-12-31')
         self.assertRaises(IntegrityError, other_user.save)
 
+    def test_add_friend(self):
+        """Check if users cannot add themselves to their friend list"""
+
+        self.user.friends.add(self.user)
+        self.assertRaises(Exception, self.user.save)
+
 class EnrollmentModelTest(TestCase):
 
     def setUp(self):
