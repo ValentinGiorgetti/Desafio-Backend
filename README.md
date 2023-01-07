@@ -51,13 +51,13 @@ Trabajo desarrollado por Valentín Giorgetti. Funcionalidades implementadas:
  
  - Para instalar las dependencias del proyecto utilizar el comando `pip install -r requirements.txt`.
  
-1. Iniciar los servicios de PostgreSQL y MongoDB.
+4. Iniciar los servicios de PostgreSQL y MongoDB.
 
-2. Ejecutar el comando `python init_db.py` para inicializar la base de datos PostgreSQL con algunos datos de ejemplo.
+5. Ejecutar el comando `python init_db.py` para inicializar la base de datos PostgreSQL con algunos datos de ejemplo.
 
-3. Ejecutar el comando `python manage.py test` para correr los tests y verificar que funcionen correctamente.
+6. Ejecutar el comando `python manage.py test` para correr los tests y verificar que funcionen correctamente.
 
-4. Ejecutar el comando `python manage.py runserver` para iniciar el servidor.
+7. Ejecutar el comando `python manage.py runserver` para iniciar el servidor.
 
 ### Envío de emails asincrónicos
 
