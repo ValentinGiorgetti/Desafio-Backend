@@ -53,9 +53,9 @@ Trabajo desarrollado por Valentín Giorgetti. Funcionalidades implementadas:
  
 1. Iniciar los servicios de PostgreSQL y MongoDB.
 
-2. Ejecutar el comando `python manage.py test` para correr los tests y verificar que funcionen correctamente.
+2. Ejecutar el comando `python init_db.py` para inicializar la base de datos PostgreSQL con algunos datos de ejemplo.
 
-3. Ejecutar el comando `python init_db.py` para inicializar la base de datos PostgreSQL con algunos datos de ejemplo.
+3. Ejecutar el comando `python manage.py test` para correr los tests y verificar que funcionen correctamente.
 
 4. Ejecutar el comando `python manage.py runserver` para iniciar el servidor.
 
@@ -69,9 +69,9 @@ Para comenzar a enviar los emails, ubicarse en el directorio "FriendsLessonsSyst
 
 1. Iniciar un servidor RabbitMQ.
 
-1. Abrir una consola y ejecutar el comando `celery -A FriendsLessonsSystem worker --pool=solo -l info`.
+2. Abrir una consola, iniciar el entorno virtual y ejecutar el comando `celery -A FriendsLessonsSystem worker --pool=solo -l info`.
 
-2. Abrir otra consola ejecutar el comando `celery -A FriendsLessonsSystem beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler`.
+2. Abrir otra consola, iniciar el entorno virtual y ejecutar el comando `celery -A FriendsLessonsSystem beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler`.
 
 Para dejar de enviar emails cerrar ambas consolas.
 
